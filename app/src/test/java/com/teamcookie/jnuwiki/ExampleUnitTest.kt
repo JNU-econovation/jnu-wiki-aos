@@ -1,4 +1,4 @@
-package com.teamcooki.jnuwiki
+package com.teamcookie.jnuwiki
 
 import org.junit.Test
 
