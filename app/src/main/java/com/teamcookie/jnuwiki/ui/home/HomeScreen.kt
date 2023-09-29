@@ -32,6 +32,9 @@ fun HomeScreen() {
                 override fun onMapReady(kakaoMap: KakaoMap) {
                     //맵뷰 준비됨
                 }
+                override fun getPosition(): LatLng {
+                    return LatLng.from(Const.CENTER_LAT, Const.CENTER_LON)
+                }
             })
             mapview
         }, update = {

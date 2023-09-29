@@ -7,8 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
+import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.MapView
+import com.teamcookie.jnuwiki.Const
 
 @Composable
 fun MyScreen() {
@@ -31,6 +33,10 @@ fun MyScreen() {
                 }, object : KakaoMapReadyCallback() {
                     override fun onMapReady(kakaoMap: KakaoMap) {
                         //맵뷰 준비됨
+                    }
+
+                    override fun getPosition(): LatLng {
+                        return LatLng.from(Const.CENTER_LAT, Const.CENTER_LON)
                     }
                 })
                 mapview
