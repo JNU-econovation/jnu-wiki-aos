@@ -140,8 +140,34 @@ fun TopAppBar() {
         )
         Spacer(modifier = Modifier.height(16.dp))
         Spacer(modifier = Modifier.weight(1f))
-        //컴포넌트
+        UserLoginStateComponent()
         Spacer(modifier = Modifier.width(12.dp))
     }
 }
 
+@Composable
+fun UserLoginStateComponent() {
+    LoginBtnComponent()
+}
+
+@Composable
+fun LoginBtnComponent() {
+    Button(
+        colors = buttonColors(
+            backgroundColor = colorResource(id = R.color.button_color)
+        ),
+        onClick = {
+
+        },
+        shape = RoundedCornerShape(5.dp),
+        contentPadding = PaddingValues(horizontal = 18.dp, vertical = 0.dp)
+    ) {
+        Text(
+            text = "로그인",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            color = White,
+        )
+
+    }
+}
