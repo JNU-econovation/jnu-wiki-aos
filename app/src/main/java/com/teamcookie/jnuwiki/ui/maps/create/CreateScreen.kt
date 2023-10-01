@@ -1,4 +1,4 @@
-package com.teamcookie.jnuwiki.ui.my
+package com.teamcookie.jnuwiki.ui.maps.create
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,7 +13,7 @@ import com.kakao.vectormap.MapView
 import com.teamcookie.jnuwiki.Const
 
 @Composable
-fun MyScreen() {
+fun CreateScreen() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
