@@ -1,8 +1,18 @@
 package com.teamcookie.jnuwiki
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -15,6 +25,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -28,10 +42,14 @@ import com.teamcookie.jnuwiki.ui.create.CreateScreen
 import com.teamcookie.jnuwiki.ui.home.HomeScreen
 import com.teamcookie.jnuwiki.ui.my.MyScreen
 
+@Preview
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
+        topBar = {
+            TopAppBar()
+        },
         bottomBar = {
             BottomNavigation(navController = navController)
         }
@@ -113,4 +131,67 @@ fun NavigationGraph(navController: NavHostController) {
     }
 }
 
+@Composable
+fun TopAppBar() {
+    androidx.compose.material.TopAppBar(
+        backgroundColor = White,
+        modifier = Modifier.height(73.dp)
+    ) {
+        Image(
+            painter = painterResource(R.drawable.logo),
+            contentDescription = "jnu wiki 로고",
+            modifier = Modifier.padding(10.dp)
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.weight(1f))
+        UserLoginStateComponent()
+        Spacer(modifier = Modifier.width(12.dp))
+    }
+}
 
+@Composable
+fun UserLoginStateComponent() {
+    LoginBtnComponent()
+}
+
+@Composable
+fun LoginBtnComponent() {
+    Button(
+        colors = buttonColors(
+            backgroundColor = colorResource(id = R.color.button_color)
+        ),
+        onClick = {
+
+        },
+        shape = RoundedCornerShape(5.dp),
+        contentPadding = PaddingValues(horizontal = 18.dp, vertical = 0.dp)
+    ) {
+        Text(
+            text = "로그인",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            color = White,
+        )
+
+    }
+}
+
+@Composable
+fun UserNameComponent() {
+    Row {
+        Text(text = "temp",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Gray
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        Icon(
+            painter = painterResource(id = R.drawable.back_icon),
+            contentDescription = "로그아웃",
+            tint = Gray,
+            modifier = Modifier.clickable {
+                //todo : logout
+            }
+        )
+    }
+}
