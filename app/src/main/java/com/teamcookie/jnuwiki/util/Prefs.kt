@@ -12,4 +12,10 @@ class Prefs(context: Context) {
         set(value){
             prefs.edit().putString("token",value).apply()
         }
+
+    var refresh: String?
+        get() = prefs.getString("refresh",null)
+        set(value){
+            prefs.edit().putString("refresh",value).apply()
+        }
 }
