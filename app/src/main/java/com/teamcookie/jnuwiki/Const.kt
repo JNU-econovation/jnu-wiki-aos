@@ -8,4 +8,5 @@ object Const {
     const val MY = "MY"
     const val CENTER_LAT = 35.177098
     const val CENTER_LON = 126.904856
+    const val BASE_URL = "server Ip"
 }
