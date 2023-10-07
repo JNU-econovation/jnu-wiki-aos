@@ -175,7 +175,7 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                                 R.drawable.visible_icon
                             else R.drawable.invisible_icon
 
-                            val description = if (passwordVisible) "비밀번호 숨기기" else "비밀번호 표사"
+                            val description = if (passwordVisible) "비밀번호 숨기기" else "비밀번호 표시"
 
 
                             Icon(
