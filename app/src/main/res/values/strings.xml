@@ -3,4 +3,12 @@
     <string name="nav_home">홈</string>
     <string name="nav_create">게시글 작성</string>
     <string name="nav_my">마이 페이지</string>
+    <string name="login_welcome_text">환영해요! 오늘도 전남대 정보들, 잘 부탁해요 :)</string>
+    <string name="login_text">로그인</string>
+    <string name="id_text">아이디</string>
+    <string name="id_placeholder_text">아이디를 입력하세요</string>
+    <string name="pw_text">비밀번호</string>
+    <string name="pw_placeholder_text">비밀번호를 입력하세요</string>
+    <string name="registe_question_text">계정이 없으신가요?</string>
+    <string name="registe_text">회원가입</string>
 </resources>

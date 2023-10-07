@@ -1,10 +1,5 @@
 package com.teamcookie.jnuwiki
 
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.core.EaseIn
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -46,7 +41,6 @@ import com.teamcookie.jnuwiki.ui.login.LoginScreen
 import com.teamcookie.jnuwiki.ui.maps.create.CreateScreen
 import com.teamcookie.jnuwiki.ui.maps.home.HomeScreen
 import com.teamcookie.jnuwiki.ui.maps.my.MyScreen
-
 @Preview
 @Composable
 fun MainScreen() {
@@ -84,7 +78,6 @@ fun BottomNavigation(navController: NavHostController) {
             androidx.compose.material.BottomNavigation(
                 backgroundColor = White
             ) {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
 
                 list.forEach { item ->
@@ -99,11 +92,11 @@ fun BottomNavigation(navController: NavHostController) {
                             Text(
                                 stringResource(id = item.title),
                                 fontSize = 12.sp,
-                                color = colorResource(id = R.color.nav_selected),
+                                color = colorResource(id = R.color.main_color_bright),
                                 fontWeight = FontWeight.Bold
                             )
                         },
-                        selectedContentColor = colorResource(id = R.color.nav_selected),
+                        selectedContentColor = colorResource(id = R.color.main_color_bright),
                         unselectedContentColor = Gray,
                         selected = currentRoute == item.screenRoute,
                         alwaysShowLabel = false,
@@ -187,7 +180,7 @@ fun UserLoginStateComponent(navController: NavHostController) {
 fun LoginBtnComponent(navController: NavHostController) {
     Button(
         colors = buttonColors(
-            backgroundColor = colorResource(id = R.color.button_color)
+            backgroundColor = colorResource(id = R.color.main_color)
         ),
         onClick = {
             navController.navigate(Const.LOGIN)
