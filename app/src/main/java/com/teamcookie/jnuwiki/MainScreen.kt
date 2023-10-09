@@ -17,6 +17,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Gray
@@ -28,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -38,6 +41,7 @@ import com.teamcookie.jnuwiki.Const.CREATE
 import com.teamcookie.jnuwiki.Const.HOME
 import com.teamcookie.jnuwiki.Const.MY
 import com.teamcookie.jnuwiki.ui.login.LoginScreen
+import com.teamcookie.jnuwiki.ui.maps.MapViewModel
 import com.teamcookie.jnuwiki.ui.maps.create.CreateScreen
 import com.teamcookie.jnuwiki.ui.maps.home.HomeScreen
 import com.teamcookie.jnuwiki.ui.maps.my.MyScreen
@@ -138,7 +142,7 @@ fun NavigationGraph(navController: NavHostController) {
         }
 
         composable(Const.LOGIN){
-            LoginScreen()
+            LoginScreen(navController)
         }
     }
 }
@@ -172,8 +176,14 @@ fun TopAppBar(navController: NavHostController) {
 }
 
 @Composable
-fun UserLoginStateComponent(navController: NavHostController) {
-    LoginBtnComponent(navController)
+fun UserLoginStateComponent(navController: NavHostController, mapViewModel: MapViewModel = viewModel()) {
+    val uiState by mapViewModel.uiState.collectAsState()
+
+    if(uiState.isLogin == null){
+        mapViewModel.checkLogin()
+    }else{
+        if(uiState.isLogin!!) UserNameComponent(uiState.nickName) else LoginBtnComponent(navController = navController)
+    }
 }
 
 @Composable
@@ -199,10 +209,10 @@ fun LoginBtnComponent(navController: NavHostController) {
 }
 
 @Composable
-fun UserNameComponent() {
+fun UserNameComponent(nickName : String) {
     Row {
         Text(
-            text = "temp",
+            text = nickName,
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
             color = Gray
