@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.teamcookie.jnuwiki.Const
 import com.teamcookie.jnuwiki.R
 
 @Composable
@@ -54,7 +55,11 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
     val loginUiState by loginViewModel.uiState.collectAsState()
 
     if(loginUiState.isLogin){
-        navController.popBackStack()
+        navController.navigate(Const.HOME) {
+            popUpTo(Const.HOME){
+                inclusive = true
+            }
+        }
     }
 
     val snackbarHostState = remember { SnackbarHostState() }
