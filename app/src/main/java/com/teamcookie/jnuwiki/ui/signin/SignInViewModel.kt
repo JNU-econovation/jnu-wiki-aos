@@ -58,4 +58,24 @@ class SignInViewModel : ViewModel(){
         }
     }
 
+    fun checkNickname(){
+        viewModelScope.launch {
+            val result = repository.checkNickname(RequestCheckNicknameDTO(uiState.value.nickname))
+            result.onFailure {Throw ->
+                _uiState.update {
+                    it.copy(message = Throw.message?: "Error")
+                }
+            }.onSuccess {info ->
+                if(info.result == 200){
+                    _uiState.update {
+                        it.copy(isSignIn = true, message = "사용가능한 닉네임입니다.")
+                    }
+                }else{
+                    _uiState.update {
+                        it.copy(message = it.message)
+                    }
+                }
+            }
+        }
+    }
 }
