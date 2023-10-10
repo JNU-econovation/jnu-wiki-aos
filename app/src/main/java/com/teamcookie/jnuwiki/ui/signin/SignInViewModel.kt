@@ -51,11 +51,11 @@ class SignInViewModel : ViewModel(){
             }.onSuccess {info ->
                 if(info.status == 200){
                     _uiState.update {
-                        it.copy(isSignIn = true, message = "사용가능한 이메일입니다.")
+                        it.copy(message = "사용가능한 이메일입니다.")
                     }
                 }else{
                     _uiState.update {
-                        it.copy(message = info.)
+                        it.copy(message = info.message)
                     }
                 }
             }
@@ -72,11 +72,11 @@ class SignInViewModel : ViewModel(){
             }.onSuccess {info ->
                 if(info.status == 200){
                     _uiState.update {
-                        it.copy(isSignIn = true, message = "사용가능한 닉네임입니다.")
+                        it.copy(message = "사용가능한 닉네임입니다.")
                     }
                 }else{
                     _uiState.update {
-                        it.copy(message = it.message)
+                        it.copy(message = info.message)
                     }
                 }
             }
