@@ -45,6 +45,8 @@ import com.teamcookie.jnuwiki.ui.maps.MapViewModel
 import com.teamcookie.jnuwiki.ui.maps.create.CreateScreen
 import com.teamcookie.jnuwiki.ui.maps.home.HomeScreen
 import com.teamcookie.jnuwiki.ui.maps.my.MyScreen
+import com.teamcookie.jnuwiki.ui.signin.SignInScreen
+
 @Preview
 @Composable
 fun MainScreen() {
@@ -143,6 +145,10 @@ fun NavigationGraph(navController: NavHostController) {
 
         composable(Const.LOGIN){
             LoginScreen(navController)
+        }
+
+        composable(Const.SIGNIN){
+            SignInScreen(navController)
         }
     }
 }
