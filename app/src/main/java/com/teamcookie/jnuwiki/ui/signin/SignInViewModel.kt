@@ -34,7 +34,11 @@ class SignInViewModel : ViewModel(){
     }
 
     fun submit(){
-        
+        if(uiState.value.pw != uiState.value.repeat){
+            _uiState.update {
+                it.copy(message = "비밀번호 재입력이 일치하지 않습니다.")
+            }
+        }
     }
 
     fun checkEmail(){
@@ -45,13 +49,13 @@ class SignInViewModel : ViewModel(){
                     it.copy(message = Throw.message?: "Error")
                 }
             }.onSuccess {info ->
-                if(info.result == 200){
+                if(info.status == 200){
                     _uiState.update {
                         it.copy(isSignIn = true, message = "사용가능한 이메일입니다.")
                     }
                 }else{
                     _uiState.update {
-                        it.copy(message = it.message)
+                        it.copy(message = info.)
                     }
                 }
             }
@@ -66,7 +70,7 @@ class SignInViewModel : ViewModel(){
                     it.copy(message = Throw.message?: "Error")
                 }
             }.onSuccess {info ->
-                if(info.result == 200){
+                if(info.status == 200){
                     _uiState.update {
                         it.copy(isSignIn = true, message = "사용가능한 닉네임입니다.")
                     }

@@ -3,7 +3,7 @@ package com.teamcookie.jnuwiki.model.dto
 data class ResponseUserInfoDTO(
     val success: Boolean,
     val response: UserInfo?,
-    val error: ErrorDTO?
+    val error: StatusDTO?
 )
 
 data class UserInfo(

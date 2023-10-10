@@ -10,6 +10,7 @@ import com.teamcookie.jnuwiki.model.dto.RequestCheckNicknameDTO
 import com.teamcookie.jnuwiki.model.dto.RequestSignInDTO
 import com.teamcookie.jnuwiki.model.dto.ResponseUserInfoDTO
 import com.teamcookie.jnuwiki.model.dto.ResultInfo
+import com.teamcookie.jnuwiki.model.dto.StatusDTO
 import com.teamcookie.jnuwiki.model.network.MainClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -68,42 +69,42 @@ object MainRepository {
     }
 
 
-    suspend fun checkEmail(request: RequestCheckEmailDTO):Result<ResultInfo>{
+    suspend fun checkEmail(request: RequestCheckEmailDTO):Result<StatusDTO>{
         return try {
             val response = MainClient.mainService.checkEmail(request)
             if(response.isSuccessful.not()){
                 val temp = Gson().fromJson(response.errorBody()?.string(),BaseResponseDTO::class.java)
-                Result.success(ResultInfo(temp.error!!.message,temp.error.status))
+                Result.success(StatusDTO(temp.error!!.message,temp.error.status))
             }else{
-                Result.success(ResultInfo("",200))
+                Result.success(StatusDTO("",200))
             }
         }catch (e: Exception){
             Result.failure(Exception(e.message))
         }
     }
 
-    suspend fun checkNickname(request: RequestCheckNicknameDTO):Result<ResultInfo>{
+    suspend fun checkNickname(request: RequestCheckNicknameDTO):Result<StatusDTO>{
         return try {
             val response = MainClient.mainService.checkNickname(request)
             if(response.isSuccessful.not()){
                 val temp = Gson().fromJson(response.errorBody()?.string(),BaseResponseDTO::class.java)
-                Result.success(ResultInfo(temp.error!!.message,temp.error.status))
+                Result.success(StatusDTO(temp.error!!.message,temp.error.status))
             }else{
-                Result.success(ResultInfo("",200))
+                Result.success(StatusDTO("",200))
             }
         }catch (e: Exception){
             Result.failure(Exception(e.message))
         }
     }
 
-    suspend fun signIn(request: RequestSignInDTO):Result<ResultInfo>{
+    suspend fun signIn(request: RequestSignInDTO):Result<StatusDTO>{
         return try {
             val response = MainClient.mainService.signIn(request)
             if(response.isSuccessful.not()){
                 val temp = Gson().fromJson(response.errorBody()?.string(),BaseResponseDTO::class.java)
-                Result.success(ResultInfo(temp.error!!.message,temp.error.status))
+                Result.success(StatusDTO(temp.error!!.message,temp.error.status))
             }else{
-                Result.success(ResultInfo("",200))
+                Result.success(StatusDTO("",200))
             }
         }catch (e: Exception){
             Result.failure(Exception(e.message))
