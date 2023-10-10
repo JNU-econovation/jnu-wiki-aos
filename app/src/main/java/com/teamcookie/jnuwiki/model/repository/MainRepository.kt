@@ -7,6 +7,7 @@ import com.teamcookie.jnuwiki.model.dto.ResponseLoginDTO
 import com.teamcookie.jnuwiki.model.dto.BaseResponseDTO
 import com.teamcookie.jnuwiki.model.dto.RequestCheckEmailDTO
 import com.teamcookie.jnuwiki.model.dto.RequestCheckNicknameDTO
+import com.teamcookie.jnuwiki.model.dto.RequestSignInDTO
 import com.teamcookie.jnuwiki.model.dto.ResponseUserInfoDTO
 import com.teamcookie.jnuwiki.model.dto.ResultInfo
 import com.teamcookie.jnuwiki.model.network.MainClient
@@ -84,6 +85,20 @@ object MainRepository {
     suspend fun checkNickname(request: RequestCheckNicknameDTO):Result<ResultInfo>{
         return try {
             val response = MainClient.mainService.checkNickname(request)
+            if(response.isSuccessful.not()){
+                val temp = Gson().fromJson(response.errorBody()?.string(),BaseResponseDTO::class.java)
+                Result.success(ResultInfo(temp.error!!.message,temp.error.status))
+            }else{
+                Result.success(ResultInfo("",200))
+            }
+        }catch (e: Exception){
+            Result.failure(Exception(e.message))
+        }
+    }
+
+    suspend fun signIn(request: RequestSignInDTO):Result<ResultInfo>{
+        return try {
+            val response = MainClient.mainService.signIn(request)
             if(response.isSuccessful.not()){
                 val temp = Gson().fromJson(response.errorBody()?.string(),BaseResponseDTO::class.java)
                 Result.success(ResultInfo(temp.error!!.message,temp.error.status))
