@@ -1,14 +1,12 @@
 package com.teamcookie.jnuwiki.model.repository
 
-import android.util.Log
 import com.google.gson.Gson
 import com.teamcookie.jnuwiki.MainApplication
 import com.teamcookie.jnuwiki.model.dto.RequestLoginDTO
 import com.teamcookie.jnuwiki.model.dto.ResponseLoginDTO
-import com.teamcookie.jnuwiki.model.dto.ResponseTokenDTO
+import com.teamcookie.jnuwiki.model.dto.BaseResponseDTO
 import com.teamcookie.jnuwiki.model.dto.ResponseUserInfoDTO
 import com.teamcookie.jnuwiki.model.dto.ResultInfo
-import com.teamcookie.jnuwiki.model.network.AuthService
 import com.teamcookie.jnuwiki.model.network.MainClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -56,7 +54,7 @@ object MainRepository {
         return try {
             val response = MainClient.mainService.issueToken()
             if(response.isSuccessful.not()){
-                val temp = Gson().fromJson(response.errorBody()?.string(),ResponseTokenDTO::class.java)
+                val temp = Gson().fromJson(response.errorBody()?.string(),BaseResponseDTO::class.java)
                 Result.success(temp.error!!.status)
             }else{
                 Result.success(200)
