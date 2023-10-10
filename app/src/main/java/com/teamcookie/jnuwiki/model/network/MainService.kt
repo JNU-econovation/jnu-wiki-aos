@@ -23,7 +23,7 @@ interface MainService {
     suspend fun checkEmail(@Body request: RequestCheckEmailDTO): Response<BaseResponseDTO>
 
     @POST("/members/check/nickname")
-    suspend fun checkEmail(@Body request: RequestCheckNicknameDTO): Response<BaseResponseDTO>
+    suspend fun checkNickname(@Body request: RequestCheckNicknameDTO): Response<BaseResponseDTO>
 
     @POST("/member/join")
     suspend fun signIn(@Body request: RequestSignInDTO): Response<BaseResponseDTO>
