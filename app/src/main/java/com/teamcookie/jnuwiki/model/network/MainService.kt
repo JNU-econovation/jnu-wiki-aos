@@ -6,6 +6,7 @@ import com.teamcookie.jnuwiki.model.dto.ResponseLoginDTO
 import com.teamcookie.jnuwiki.model.dto.BaseResponseDTO
 import com.teamcookie.jnuwiki.model.dto.RequestCheckEmailDTO
 import com.teamcookie.jnuwiki.model.dto.RequestCheckNicknameDTO
+import com.teamcookie.jnuwiki.model.dto.RequestSignInDTO
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -23,4 +24,7 @@ interface MainService {
 
     @POST("/members/check/nickname")
     suspend fun checkEmail(@Body request: RequestCheckNicknameDTO): Response<BaseResponseDTO>
+
+    @POST("/member/join")
+    suspend fun signIn(@Body request: RequestSignInDTO): Response<BaseResponseDTO>
 }
