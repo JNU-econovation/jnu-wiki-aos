@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.teamcookie.jnuwiki.Const
 import com.teamcookie.jnuwiki.R
 
 @Composable
@@ -51,7 +52,11 @@ fun SignInScreen(navController: NavHostController, signInViewModel: SignInViewMo
     val signInUiState by signInViewModel.uiState.collectAsState()
 
     if (signInUiState.isSignIn) {
-        navController.popBackStack()
+        navController.navigate(Const.LOGIN) {
+            popUpTo(Const.LOGIN){
+                inclusive = true
+            }
+        }
     }
 
     val snackbarHostState = remember { SnackbarHostState() }
@@ -148,7 +153,7 @@ fun SignInScreen(navController: NavHostController, signInViewModel: SignInViewMo
                                 backgroundColor = colorResource(id = R.color.main_color)
                             ),
                             onClick = {
-                                //TODO
+                                signInViewModel.checkEmail()
                             },
                             shape = RoundedCornerShape(5.dp),
                             contentPadding = PaddingValues(horizontal = 18.dp, vertical = 0.dp)
@@ -202,7 +207,7 @@ fun SignInScreen(navController: NavHostController, signInViewModel: SignInViewMo
                                 backgroundColor = colorResource(id = R.color.main_color)
                             ),
                             onClick = {
-                                //TODO
+                                signInViewModel.checkNickname()
                             },
                             shape = RoundedCornerShape(5.dp),
                             contentPadding = PaddingValues(horizontal = 18.dp, vertical = 0.dp)
