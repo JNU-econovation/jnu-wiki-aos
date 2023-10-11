@@ -240,7 +240,10 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                     text = stringResource(R.string.registe_text),
                     fontWeight = FontWeight.SemiBold,
                     color = colorResource(id = R.color.main_color),
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    modifier = Modifier.clickable {
+                        navController.navigate(Const.SIGNIN)
+                    }
                 )
             }
 
